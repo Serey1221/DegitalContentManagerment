@@ -8,6 +8,6 @@ namespace DegitalContentManagerment.Models
     public class Leturer:BaseEntity
     {
         public int LeturerId { get; set; }
-
+        public string ImageFile { get; internal set; }
     }
 }

@@ -61,10 +61,12 @@ namespace DegitalContentManagerment.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Logout()
         {
             return View();
         }
+        
     }
 }

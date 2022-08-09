@@ -22,6 +22,6 @@ namespace DegitalContentManagerment.Models
         public  int Age { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
-        public String ProfileImage { get; set; }
+        public String? ProfileImage { get; set; }
     }
 }
