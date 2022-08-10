@@ -63,12 +63,14 @@ namespace DegitalContentManagerment.Controllers
                 await _context.Leturers.AddAsync(leturer);
                 await _context.SaveChangesAsync();
             }
-            return View("Index");
+            return View("GetsAllProfile");
         }
+        [HttpGet]
         public IActionResult GetsAllProfile()
         {
             var profiles = _context.Leturers.ToList();
-            return View(profiles);
+            //return Json(profiles);
+            return View("GetsAllProfile", profiles);
         }
         // GET: LeturerController/Edit/5
         public ActionResult Edit(int id)
