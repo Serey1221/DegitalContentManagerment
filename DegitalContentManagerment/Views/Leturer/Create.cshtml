@@ -79,8 +79,11 @@
             </div>*@
             <div class="form-group mb-3">
                 <label asp-for="ProfileImage" class="control-label"></label>
+                <div class="" id="preview">
+                    <img src="" alt="" width="250" height="250"/>
+                </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" asp-for="ProfileImage">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01"​ name="file">
                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     <span asp-validation-for="ProfileImage" class="text-danger"></span>
                 </div>
@@ -97,10 +100,11 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script>
     document.querySelector("input[type='file']").addEventListener("change", function (e) {
-
-    });
+        let img = document.getElementById("#preview>img");
+        img.setAttribute("src", window.URL.createObjectURL(e.target.files[0]));
+    })
 </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

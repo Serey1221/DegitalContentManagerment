@@ -1,13 +1,12 @@
 ﻿@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
-@model IEnumerable<DegitalContentManagerment.Models.Leturer>
+@model IEnumerable<DegitalContentManagerment.Models.Student>
 @{
     ViewData["Title"] = "Index";
     Layout = "_layout";
-    
 }
 
 <h1 class="mx-5 my-5">Letusrer</h1>
-<a href="/Leturer/Create" class="btn btn-primary mb-3">Create New <i class="fa-solid fa-calendar-plus"></i></a>
+<a href="/Student/Create" class="btn btn-primary mb-3">Create New <i class="fa-solid fa-calendar-plus"></i></a>
 <div class="mx-5 my-5">
     <table class="table table-striped">
         <thead>
@@ -31,24 +30,25 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (DegitalContentManagerment.Models.Leturer leturer in Model)
+            
+           @foreach(DegitalContentManagerment.Models.Student student in Model)
             {
-                <tr>
-                    <td>@Html.DisplayFor(let => leturer.FirstName)</td>
-                    @*<td>@Html.DisplayFor(movies => leturer.LastName)</td>
-                    <td>@Html.DisplayFor(movies => leturer.Gender)</td>
-                    <td>@Html.DisplayFor(movies => leturer.PhoneNumber)</td>
-                    <td>@Html.DisplayFor(movies => leturer.Email)</td>
-                    <td>@Html.DisplayFor(movies => leturer.Age)</td>*@
-                    @*<td>@Html.DisplayFor(movies => leturer.ProfileImage)</td>*@
-                    <td>
-                        <img src="~/Profiles/@leturer.ImageFile" />
-                    </td>
-                    <td>
-                        <a asp-route-id="@leturer.LeturerId" asp-controller="Leturer" asp-action="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a asp-route-id="@leturer.LeturerId" asp-controller="Leturer" asp-action="Delete"><i class="fa-solid fa-trash-can"></i></a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@Html.DisplayFor(stu => student.FirstName)</td>
+                <td>@Html.DisplayFor(stu => student.LastName)</td>
+                <td>@Html.DisplayFor(stu => student.Gender)</td>
+                <td>@Html.DisplayFor(stu => student.PhoneNumber)</td>
+                <td>@Html.DisplayFor(stu => student.Email)</td>
+                <td>@Html.DisplayFor(stu => student.Age)</td>
+                @*<td>@Html.DisplayFor(movies => student.ProfileImage)</td>*@
+                @*<td>
+            <img src="~/Profiles/@student.ImageFile" />
+        </td>*@
+                <td>
+                    <a asp-route-id="@student.StudenId" asp-controller="Student" asp-action="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a asp-route-id="@student.StudenId" asp-controller="Student" asp-action="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
             }
 
         </tbody>

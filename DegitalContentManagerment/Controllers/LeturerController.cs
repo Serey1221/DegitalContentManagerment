@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using DegitalContentManagerment.Models;
 using DegitalContentManagerment.Data;
 
+
+
+
 namespace DegitalContentManagerment.Controllers
 {
     public class LeturerController : Controller
@@ -37,41 +40,36 @@ namespace DegitalContentManagerment.Controllers
         // GET: LeturerController/Create
         public IActionResult Create()
         {
-            var profiles = _context.Leturers.ToList();
-            return View(profiles);
+           
+            return View("create");
         }
 
         // POST: LeturerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Leturer profile,IFormFile file)
+        public async Task<IActionResult> Create(Leturer leturer , IFormFile file)
         {
-            if(file.Length>0 && file != null)
+            if (file.Length>0 && file != null)
             {
+                //var uploadFile = Path.GetFileName(file.FileName);
+                //return Content($"{uploadFile}");
                 var uploadFile = Path.GetFileName(file.FileName);
-                var destination = Path.Combine(_env.WebRootPath,"Profiles", uploadFile);
-                profile.ImageFile = uploadFile;
+                var destination = Path.Combine(_env.WebRootPath, "Profiles", uploadFile);
+                leturer.ImageFile = uploadFile;
 
                 var fileStream = new FileStream(destination, FileMode.Create);
                 await file.CopyToAsync(fileStream);
 
-                await _context.Leturers.AddAsync(profile);
+                await _context.Leturers.AddAsync(leturer);
                 await _context.SaveChangesAsync();
             }
-            return View("Profiles");
+            return View("Index");
         }
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
+        public IActionResult GetsAllProfile()
+        {
+            var profiles = _context.Leturers.ToList();
+            return View(profiles);
+        }
         // GET: LeturerController/Edit/5
         public ActionResult Edit(int id)
         {
